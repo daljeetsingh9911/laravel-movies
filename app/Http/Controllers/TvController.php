@@ -32,12 +32,12 @@ class TvController extends Controller
 
     function details(String $id):View {
 
-        $movie = Http::withToken(Config('services.tmbd.token'))
-        ->get("https://api.themoviedb.org/3/movie/{$id}?language=en-US&page=1&append_to_response=credits,videos,images")
+        $tvShow = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/tv/{$id}?language=en-US&page=1&append_to_response=credits,videos,images")
         ->json();
         
         return view("tv.detail",[
-            'movie'=>$movie
+            'tvShow'=>$tvShow
         ]);
     }
 
