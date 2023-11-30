@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\PeopleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use App\Http\Controllers\MoviesController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// movies routes
 Route::get('/',[MoviesController::class,'index'])->name('movies.index');
 Route::get('/details/{id}',[MoviesController::class,'details'])->name('movies.details');
+
+// people routes
+
+
+Route::get('/people/{page?}',[PeopleController::class,'index'])->name('people.index');
+
+// People deatails view
+Route::get('/artist/details/{id}',[PeopleController::class,'details'])->name('people.details');
