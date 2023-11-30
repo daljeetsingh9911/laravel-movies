@@ -8,20 +8,30 @@ use Illuminate\Support\Facades\Http;
 class PeopleController extends Controller
 {
     //
-    public function index(){
+    public function index($page = 1){
 
+        abort_if($page > 500 ,204);
 
         $persons = Http::withToken(Config('services.tmbd.token'))
-        ->get("https://api.themoviedb.org/3/person/popular?language=en-US&page=1")
-        ->json()['results'];
+        ->get("https://api.themoviedb.org/3/person/popular?language=en-US&page={$page}")
+        ->json();
 
         return view("artists.index",[
-            "persons"=> $persons
+            "persons"=> ($page <= 0 || $page > 500)?[]:$persons['results'],
+            "page"=>$page
         ]);
     }
 
-    public function details(Request $request){
-        return view("artists.detail");
+    public function details($id){
+        $person = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/person/{$id}?language=en-US")
+        ->json();
+
+        dump($person);
+
+        return view("artists.detail",[
+            'person'=>$person
+        ]);
 
     }
 }
