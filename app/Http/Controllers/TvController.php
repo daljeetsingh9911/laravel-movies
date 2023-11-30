@@ -1,32 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\View\View;
- 
+
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-class MoviesController extends Controller
+class TvController extends Controller
 {
-   
     function index():View {
         $popularMovies = Http::withToken(Config('services.tmbd.token'))
-        ->get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")
+        ->get("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1")
         ->json()['results'];
 
-      
-        $newPlaying = Http::withToken(Config('services.tmbd.token'))
-        ->get("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")
+        $top_rated = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1")
         ->json()['results'];
-        
+      
+    
         $genres = Http::withToken(Config('services.tmbd.token'))
-        ->get("https://api.themoviedb.org/3/genre/movie/list?language=en")
+        ->get("https://api.themoviedb.org/3/genre/tv/list?language=en")
         ->json()['genres'];
 
-        return view("movies.index",[
-            'popularMovies' => $popularMovies,
+
+        return view("tv.index",[
+            'popularTvshow' => $popularMovies,
             'genres' => $genres,
-            'newPlaying'=>$newPlaying
+            'topRated'=>$top_rated
         ]);
     }
 
@@ -36,7 +36,7 @@ class MoviesController extends Controller
         ->get("https://api.themoviedb.org/3/movie/{$id}?language=en-US&page=1&append_to_response=credits,videos,images")
         ->json();
         
-        return view("movies.detail",[
+        return view("tv.detail",[
             'movie'=>$movie
         ]);
     }

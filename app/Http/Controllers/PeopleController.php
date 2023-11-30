@@ -27,10 +27,24 @@ class PeopleController extends Controller
         ->get("https://api.themoviedb.org/3/person/{$id}?language=en-US")
         ->json();
 
-        dump($person);
+        $socialAccounts = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/person/{$id}/external_ids")
+        ->json();
+
+        $credits = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/person/{$id}/combined_credits")
+        ->json();
+
+        $kownFor = collect($credits['cast']);
+
+        $kownFor = collect($kownFor)->where('media_type', 'movie')->sortByDesc('popularity')->take(5);
+        
 
         return view("artists.detail",[
-            'person'=>$person
+            'person'=>$person,
+            'socialAccounts'=>$socialAccounts,
+            'knownFor'=>$kownFor,
+            'cast'=>$credits['cast']
         ]);
 
     }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\TvController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,20 @@ Route::get('/people/{page?}',[PeopleController::class,'index'])->name('people.in
 
 // People deatails view
 Route::get('/artist/details/{id}',[PeopleController::class,'details'])->name('people.details');
+
+
+//Tv routes
+
+// movies routes
+Route::get('/tv',[TvController::class,'index'])->name('tv.index');
+Route::get('/tv/details/{id}',[TvController::class,'details'])->name('tv.details');
+
+
+
+//clear cache
+Route::get('/cache/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+})->name('admin-cache-clear');
