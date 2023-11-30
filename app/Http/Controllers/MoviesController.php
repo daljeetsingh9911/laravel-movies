@@ -8,20 +8,43 @@ use Illuminate\Support\Facades\Http;
 
 class MoviesController extends Controller
 {
+   
+    public $genres;
+
+    function __construct(){
+        
+    }
     //
     function index():View {
         $popularMovies = Http::withToken(Config('services.tmbd.token'))
         ->get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")
-        ->json();
+        ->json()['results'];
+
+      
+        $newPlaying = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")
+        ->json()['results'];
         
+        $genres = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/genre/movie/list?language=en")
+        ->json()['genres'];
+
         return view("index",[
             'popularMovies' => $popularMovies,
-
+            'genres' => $genres,
+            'newPlaying'=>$newPlaying
         ]);
     }
 
-    function details():View{
-        return view("detail");
+    function details(String $id):View {
+
+        $movie = Http::withToken(Config('services.tmbd.token'))
+        ->get("https://api.themoviedb.org/3/movie/{$id}?language=en-US&page=1&append_to_response=credits,videos,images")
+        ->json();
+        
+        return view("detail",[
+            'movie'=>$movie
+        ]);
     }
 
 }
