@@ -40,10 +40,10 @@
                 <section class="know-for mt-10">
                     <ul class="flex justify-between">
                         @foreach ($knownFor as $known)
-                            <li>
+                            <li class="w-36">
                                 <a href="{{ route('movies.details', $known['id']) }}" target="_blank">
                                     <img src="https://image.tmdb.org/t/p/w150_and_h225_bestv2{{ $known['poster_path'] }}"
-                                        alt="Image" class="w-full hover:opacity-75 transition-all rounded-md">
+                                        alt="Image" class="hover:opacity-75 transition-all rounded-md h-64 object-cover">
                                 </a>
                                 <p class="text-center text-sm pt-1">{{ $known['original_title'] }} </p>
                             </li>
