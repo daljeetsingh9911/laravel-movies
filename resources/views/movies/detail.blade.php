@@ -72,7 +72,9 @@
                  {{-- break loop after 3 record --}}
 
                 <div class="bg-white rounded-md overflow-hidden text-gray-800">
-                    <img src="https://image.tmdb.org/t/p/w500{{ $cast['profile_path'] }}" alt="{{ $cast['name'] }}">
+                    <a href="{{ route('people.details',$cast['id']) }}">
+                        <img src="https://image.tmdb.org/t/p/w500{{ $cast['profile_path'] }}" alt="{{ $cast['name'] }}">
+                    </a>
                     <div class="info p-2">
                         <p class="font-semibold">{{ $cast['name'] }}</p>
                         <p class="text-xs">{{ $cast['character'] }}</p>
