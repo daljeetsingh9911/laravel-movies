@@ -15,7 +15,8 @@
             $refs.search.focus('searchBar');
         }
         "
-        type="text"  wire:model.live.debounce.500ms="searchInp" placeholder="Seach (press / to foucs)" class="pl-10 focus:outline-none focus:shadow-outline rounded-full py-1.5 bg-gray-800 w-64" >
+        type="text"  wire:model.live.debounce.500ms="searchInp" placeholder="Seach (press / to foucs)" 
+        class="pl-10 focus:outline-none focus:shadow-outline rounded-full py-1.5 bg-gray-800  w-60 sm:w-64" >
         <div wire:loading class="loading absolute right-2 top-2">
             <span  class="loader"></span>
         </div>

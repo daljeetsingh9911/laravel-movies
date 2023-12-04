@@ -42,7 +42,7 @@
             <ul class="block mt-2">
                 <li class="p-2  border-b  border-gray-800"><a href="{{ url('/') }}"  wire:navigate class="hover:text-gray-300"> Movies</a></li>
                 <li class="p-2  border-b border-gray-800"><a href="{{ url('/tv') }}" wire:navigate class="hover:text-gray-300"> TV Shows</a> </li>
-                <li class="pt-2 "><a href="{{ url('/people') }}"  class="hover:text-gray-300"> People</a></li>
+                <li class="p-2 pb-0"><a href="{{ url('/people') }}"  class="hover:text-gray-300"> People</a></li>
             </ul>
         </div>
     </nav>
