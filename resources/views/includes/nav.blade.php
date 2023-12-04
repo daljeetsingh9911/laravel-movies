@@ -34,15 +34,15 @@
             </span>
         </div>
        
-        <div class="py-4 " x-show="open">
+        <div class="pt-4 " x-show="open">
             <div class="flex items-center justify-between pt-2">
                 <livewire:search-drop-down />
                 <img class="inline-block h-7 w-7 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
             </div>
             <ul class="block mt-2">
-                <li class="p-2  border-b border-gray-500"><a href="{{ url('/') }}"  wire:navigate class="hover:text-gray-300"> Movies</a></li>
-                <li class="p-2  border-b border-gray-500"><a href="{{ url('/tv') }}" wire:navigate class="hover:text-gray-300"> TV Shows</a> </li>
-                <li class="p-2  border-b border-gray-500"><a href="{{ url('/people') }}"  class="hover:text-gray-300"> People</a></li>
+                <li class="p-2  border-b  border-gray-800"><a href="{{ url('/') }}"  wire:navigate class="hover:text-gray-300"> Movies</a></li>
+                <li class="p-2  border-b border-gray-800"><a href="{{ url('/tv') }}" wire:navigate class="hover:text-gray-300"> TV Shows</a> </li>
+                <li class="pt-2 "><a href="{{ url('/people') }}"  class="hover:text-gray-300"> People</a></li>
             </ul>
         </div>
     </nav>
