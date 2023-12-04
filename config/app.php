@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
-
+$fullUrl = getFullUrl();
 return [
 
     /*
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://movies.local'),
+    'url' => env('APP_URL', $fullUrl),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -186,3 +186,11 @@ return [
     ])->toArray(),
 
 ];
+
+
+function getFullUrl() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
+    $host     = $_SERVER['HTTP_HOST'];
+    $path     = $_SERVER['REQUEST_URI'];
+    return $protocol . $host . $path;
+}
